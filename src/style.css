@@ -1,0 +1,17 @@
+.customBg{
+    background-image: url("/public/luffy.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+.blurr{
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+.HomeBgImage {
+    transform: scaleY(0.70);
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+.HomeBgImage img{
+    transform: rotateX(-4deg) rotateY(51deg) rotateZ(-2deg);
+}
