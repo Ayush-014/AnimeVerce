@@ -7,14 +7,8 @@ import Services from './pages/2.services/Services';
 import Portfolio from './pages/3.portfolio/Portfolio';
 import Contact from './pages/4.contact/Contact';
 import Footer from './components/footer/Footer'
-import Login from './pages/0.login/Login'
-import SignUp from './pages/0.login/SignUp'
 import SlidingLoginForm from './pages/0.login/toggleLogin'
-// import BgImage from '/home/kartik/E/vs/React/route/route/public/modern-glass-morphism-of-login-template-vector-50688514.jpg';
 import SigIn from "./pages/0.login/SigIn"
-// import DesktopImage from "/home/kartik/E/vs/React/route/route/public/asthetic_new.jpg"
-// import Image from "../public/brandbird.png"
-// import tick from "../public/icons8-tick-60.png"
 
 function App() {
   const [isHovered, setIsHovered] = useState(true);

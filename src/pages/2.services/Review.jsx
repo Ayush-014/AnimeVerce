@@ -23,12 +23,13 @@ export default function Review() {
             <label htmlFor="userId" className="block text-sm font-semibold leading-6 text-gray-900">
               User_Id
             </label>
-            <div className="mt-2.5 hover:scale-125 duration-500">
+            <div className="mt-2.5 hover:scale-105 duration-500">
               <input
                 type="text"
                 name="userId"
                 id="userId"
                 autoComplete="userId"
+                required
                 className="block w-full rounded-md border-0 px-2.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -37,12 +38,13 @@ export default function Review() {
             <label htmlFor="emailId" className="block text-sm ml-6 font-semibold leading-6 text-gray-900">
               Email_Id
             </label>
-            <div className="mt-2.5 hover:scale-125 duration-500">
+            <div className="mt-2.5 hover:scale-105 duration-500">
               <input
                 type="text"
                 name="emailId"
                 id="emailId"
-                autoComplete="faemailId"
+                autoComplete="emailId"
+                required
                 className="block w-full rounded-md border-0 px-2.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -73,7 +75,7 @@ export default function Review() {
                 name="rating"
                 id="rating"
                 autoComplete="tel"
-                className="block hover:scale-125 duration-500 w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block hover:scale-105 duration-500 w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -85,8 +87,9 @@ export default function Review() {
               <textarea
                 name="review"
                 id="review"
+                required
                 rows={4}
-                className="block hover:scale-125 duration-500 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block hover:scale-105 duration-500 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 defaultValue={''}
               />
             </div>
@@ -123,7 +126,7 @@ export default function Review() {
         <div className="mt-10">
           <button
             type="submit"
-            className="block hover:scale-125 duration-500 w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="block hover:scale-110 duration-500 w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Submit
           </button>

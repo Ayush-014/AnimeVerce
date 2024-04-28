@@ -8,8 +8,9 @@ border-radius: 30px;
 box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 position: relative;
 overflow: hidden;
-width: 35rem;
+width: 45rem;
 max-width: 100%;
+height: 26rem;
 min-height: 20rem;
 `;
 
