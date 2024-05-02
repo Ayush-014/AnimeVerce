@@ -2,12 +2,29 @@
     --card-height: 300px;
     --card-width: calc(var(--card-height) / 1.5);
   }
-
-.showBg{
-    background-image: url("./chainsawman.jpg");
+.Home{
+    background-image: url('./Image/Background6.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
+.Background2{
+    background-image: url('./Image/Background2.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.background {
+        background: url("https://cdn.noitatnemucod.net/thumbnail/300x400/100/debf027d032c6d40b91fab16b2ff9bd4.jpg") no-repeat center center fixed;
+        -webkit-background-size: 100%;
+            -moz-background-size: 100%;
+                -o-background-size: 100%;
+                    background-size: 100%;
+                        -webkit-background-size: cover;
+                            -moz-background-size: cover;
+                                -o-background-size: cover;
+                                    background-size: cover;
+      }
 .customBg{
     background-image: url("/public/luffy.jpg");
     background-repeat:no-repeat;
@@ -17,14 +34,14 @@
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(5px);
 }
-.HomeBgImage {
+/* .HomeBgImage {
     transform: scaleY(0.70);
     perspective: 1400px;
     transform-style: preserve-3d;
 }
 .HomeBgImage img{
     transform: rotateX(-4deg) rotateY(51deg) rotateZ(-2deg);
-}
+} */
 .card {
     width: var(--card-width);
     height: var(--card-height);
@@ -48,7 +65,7 @@
     z-index: -1;
 }
 .card:hover .wrapper{
-    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    /* transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0); */
     box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow:2px 35px 32px -8px rgba(0, 0, 0, 0.75);
     -moz-box-shadow:2px 35px 32px -8px rgba(0, 0, 0, 0.75);
@@ -108,3 +125,4 @@
     opacity: 1;
     transform: translate3d(0%, -30%, 100px);
   }
+

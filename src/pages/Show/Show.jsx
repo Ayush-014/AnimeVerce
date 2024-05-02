@@ -1,12 +1,16 @@
-import '/home/kartik/E/vs/React/route/route/src/style.css'
-import Card from "./Card"
-import Review from "./Review"
-import MovieCard from "./Moviecard"
-import SideCard from "./SideCard"
+import '../../../src/style.css'
+import { useParams } from 'react-router-dom';
+import Card from "/src/components/Card"
+import Review from "/src/components/Review"
+import MovieCard from "/src/components/Moviecard"
+import SideCard from "/src/components/SideCard"
+import Navbar from '../../components/header/Navbar';
 
 import React, { useState, useEffect } from 'react';
 
-const Services = () => {
+const Show = () => {
+    const { id } = useParams();
+    
     const [data, setData] = useState(null);
     const [showRecommended, setShowRecommended] = useState(true);
     const toggleContent = () => {
@@ -16,9 +20,10 @@ const Services = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://api-aniwatch.onrender.com/anime/info?id=attack-on-titan-112");
+                const response = await fetch(`https://api-aniwatch.onrender.com/anime/info?id=attack-on-titan-112`);
                 const json = await response.json();
                 setData(json);
+                console.log(name)
             } catch (error) {
                 console.error(error);
             }
@@ -135,10 +140,15 @@ const Services = () => {
     // )) : null;
 
     return (<>
-        <div className="bg-slate-600 h-screen w-screen overflow-hidden scrollbar-hide">
-            <div className="w-screen h-full overflow-x-hidden relative scrollbar-hide">
+        <Navbar />
+        <div className="background bg-slate-900 h-screen w-screen overflow-hidden scrollbar-hide">
+            {/* <div className="w-max absolute top-20 right-24 border-2 border-white">
+                <img src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/debf027d032c6d40b91fab16b2ff9bd4.jpg" 
+                     className="h-72 w-52" />
+            </div> */}
+            <div className="u-non-blurred w-screen h-full overflow-x-hidden relative scrollbar-hide">
                 <div className="pl-8 mb-2 flex gap-16 static h-[61%] w-screen mt-[18%] flex-col flex-wrap overflow-x-scroll scrollbar-hide">
-                    <div className="h-full">
+                    <div className="absolute h-max bottom-0 ">
                         <div className="font-bold text-green-300 m-2">#1 Most Popular</div>
                         <div className="text-4xl font-bold text-white m-2">{data?.anime?.info?.name}
                             <span className="text-2xl"> ( {data?.anime?.moreInfo?.japanese} )</span>
@@ -171,7 +181,7 @@ const Services = () => {
                             'Loading...'
                         )} */}
                         </div>
-                        <div className="text-white m-2 text-sm italic backdrop-blur-lg"> {data?.anime?.info?.description} </div>
+                        <div className="text-white m-2 w-[80%] text-sm italic backdrop-blur-lg"> {data?.anime?.info?.description} </div>
 
                         <div className="m-2 my-5 flex gap-2">
                             <a href="#" className="flex p-2 px-3 text-white font-bold bg-green-300 border rounded-lg hover:scale-105 group">
@@ -190,17 +200,20 @@ const Services = () => {
                     </div>
                 </div>
 
-                <p className="relative font-bold text-slate-300 text-lg mt-8 mx-2">SEASONS</p>
-                <div className="px-3 py-4 flex flex-col flex-wrap w-screen h-56 gap-3 border border-gray-500 rounded-lg overflow-hidden overflow-x-scroll scrollbar-hide blurr">
-                    {seasonCard}
-                </div>
+                
 
-                <div className="mt-8 flex w-screen h-max  min-h-[30rem] ">
-                    <div className="w-full  border border-slate-400 overflow-hidden">
-                    <button  className="m-2">
-                        <div className="border border-black flex">
-                        <div className={`border border-black py-2 px-4 mb-0 rounded-lg font-bold text-sm ${showRecommended ? 'bg-slate-400' : 'bg-slate-600'}`} onClick={showRecommended ? null : toggleContent}>Recommended</div>
-                        <div className={`border border-black py-2 px-4 mb-0 rounded-lg font-bold text-sm ${showRecommended ? 'bg-slate-600' : 'bg-slate-400'}`} onClick={showRecommended ? toggleContent : null}>Related</div>
+                {data && data.seasons && data.seasons.length > 0 ? (<><p className="relative font-bold text-slate-300 text-lg mt-8 mx-2">SEASONS</p>
+                <div className="px-3 py-4 flex flex-col flex-wrap w-screen h-56 gap-3 border border-gray-500 rounded-lg overflow-hidden overflow-x-scroll scrollbar-hide">
+                    {seasonCard}
+                </div></>
+        ) : null}
+
+                <div className="mt-8 mx-4 flex w-screen h-max  min-h-[30rem]">
+                    <div className="w-full h-full overflow-hidden">
+                    <button  className="mt-2 rounded-lg overflow-hidden">
+                        <div className="flex">
+                        <div className={`py-2 px-4 mb-0  font-bold text-sm ${showRecommended ? 'bg-slate-400' : 'blurr'}`} onClick={showRecommended ? null : toggleContent}>Recommended</div>
+                        <div className={`py-2 px-4 mb-0 font-bold text-sm ${showRecommended ? 'blurr' : 'bg-slate-400'}`} onClick={showRecommended ? toggleContent : null}>Related</div>
                         </div>
                         {/* {showRecommended ? (<div className="border border-black flex">
                             <div className="border border-black py-2 px-4 mb-0 bg-slate-900 rounded-lg font-bold text-sm">Recommended</div>
@@ -212,16 +225,19 @@ const Services = () => {
                     </div>)
                     } */}
                     </button>
-                    <div className="relative flex w-full border flex-wrap py-4 overflow-x-scroll scrollbar-hide">
+                    <div className="relative flex w-full flex-wrap py-4 overflow-x-scroll scrollbar-hide">
                         {cards}
                     </div>
                     </div>
-                    <div className="w-[18%] border px-2 border-slate-700 overflow-hidden">
-                        <p className="font-bold text-slate-300 text-lg mt-2 mx-2">MOST POPULAR</p>
+
+                    <div className="w-[18%] px-2 overflow-hidden">
+                    {data && data.mostPopularAnimes && data.mostPopularAnimes.length > 0 ? (<><p className="font-bold text-slate-300 text-lg mt-2 mx-2">MOST POPULAR</p>
                         <div className="mt-6 relative flex w-full gap-2 flex-wrap overflow-scroll scrollbar-hide">
                             {popularCard}
-                        </div>
+                        </div></>
+        ) : null}
                     </div>
+
                 </div>
 
                 {/* <p className="relative font-bold text-slate-300 text-lg mt-8 mx-2">RECOMMENDED ANIMES</p>
@@ -242,4 +258,4 @@ const Services = () => {
     )
 }
 
-export default Services;
+export default Show;

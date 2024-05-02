@@ -1,9 +1,8 @@
 import SignIn from "../0.login/SigIn"
-import HomeImage from "/public/brandbird.png"
-import '/home/kartik/E/vs/React/koiNiHotaHai/route/src/style.css'
+import '../../../src/style.css'
 import React, { useState } from 'react';
 
-const Portfolio = () => {
+const Login = () => {
   const [showSignIn, setShowSignIn] = useState(false);
 
   const handleJoinClick = () => {
@@ -22,7 +21,7 @@ const Portfolio = () => {
         </button>
       </div>
 
-      <div className={`absolute top-52 left-[50%] w-80 h-96 p-8 py-20 bg-gradient-to-b from-slate-600 via-orange-400 to-slate-600 text-center text-4xl font-bold rounded-lg duration-500 hover:z-10 hover:duration-500 hover:scale-105 glowing-border ${showSignIn ? 'opacity-0' : 'opacity-100'}`}>
+      <div className={`absolute top-52 left-[50%] w-80 h-96 p-8 py-20 bg text-center text-4xl font-bold rounded-lg duration-500 hover:z-10 hover:duration-500 hover:scale-105 glowing-border ${showSignIn ? 'opacity-0' : 'opacity-100'}`}>
         <div>Don't want to Sign in now, just proceed here..</div>
         <a href="/" className="mt-32 p-2 w-full text-center text-xl bg-sky-700 rounded-lg">
           Continue
@@ -43,7 +42,7 @@ const Portfolio = () => {
   )
 }
 
-export default Portfolio;
+export default Login;
 
 
 

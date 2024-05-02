@@ -14,7 +14,7 @@ const SideCard = ({ name, poster, rate, duration, episode, link }) => {
                     <img src={poster} className="title h-32 w-full" />
                     
                     <i className="title ri-play-circle-fill text-white text-4xl absolute bottom-12 left-7"></i>
-                    <div className='absolute backdrop-blur-sm w-max title bottom-2 left-3 flex gap-1 items-baseline'>
+                    <div className='title absolute backdrop-blur-sm w-max  bottom-2 left-3 flex gap-1 items-baseline'>
                         {rate ? (<div className="bg-green-400 p-1 rounded-md text-white font-bold text-xs duration-500 group-hover:backdrop-blur-2xl">
                             {rate}</div>
                         ) : null}

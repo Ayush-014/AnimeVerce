@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import DesktopImage from '/home/kartik/E/vs/React/route/route/public/purple-aesthetic-train-57-1366x768.jpg';
-import GOOGLE_ICON from "/home/kartik/E/vs/React/route/route/public/icons8-google.svg";
+import DesktopImage from '/public/purple-aesthetic-train-57-1366x768.jpg';
+import GOOGLE_ICON from "/public/icons8-google.svg";
 
 const colors = {
   primary: "#060606",
@@ -8,7 +8,7 @@ const colors = {
   disbaled: "D9D9D9"
 }
 
-const SlidingLoginForm = () => {
+const ToggleLoginForm = () => {
   const [showLoginForm, setShowLoginForm] = useState(true);
 
   const toggleForm = () => {
@@ -127,4 +127,4 @@ const SlidingLoginForm = () => {
   )
 }
 
-export default SlidingLoginForm;
+export default ToggleLoginForm;

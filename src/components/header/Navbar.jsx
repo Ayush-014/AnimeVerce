@@ -1,12 +1,15 @@
+import "../../../src/style.css"
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'HOME', href: '/', current: true },
-  { name: 'SHOW', href: '/show', current: false },
+  { name: 'MAIN', href: '/', current: true },
+  { name: 'HOME', href: '/home', current: true },
+  { name: 'SHOW', href: '/show/:id', current: false },
   { name: 'LOGIN', href: '/login', current: false },
   { name: 'ABOUT', href: '/about', current: false },
+  { name: 'MOVIES', href: '/movies', current: false },
 ]
 
 function classNames(...classes) {
@@ -15,7 +18,7 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <Disclosure as="nav" className="absolute top-0 z-10 w-screen">
+    <Disclosure as="nav" className="blurr absolute top-0 z-10 w-screen">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

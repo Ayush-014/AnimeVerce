@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import Navbar from '../../components/header/Navbar';
 
-export default function Contact({ userId, emailId, password }) {
+export default function About({ userId, emailId, password }) {
     const [showPassword, setShowPassword] = useState(false);
 
-    return (
+    return (<>
+        <Navbar />
         <div className="w-screen h-screen overflow-hidden p-24 bg-gradient-to-r from-gray-600 to-gray-600 via-gray-500">
             <div className="px-4 sm:px-0">
                 <h3 className="text-base font-semibold leading-7 text-gray-900">USER INFO</h3>
@@ -42,5 +44,6 @@ export default function Contact({ userId, emailId, password }) {
                 </dl>
             </div>
         </div>
+        </>
     );
 }

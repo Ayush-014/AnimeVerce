@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/header/Navbar';
-import Home from './pages/1.home/Home';
-import Services from './pages/2.services/Services';
-import Portfolio from './pages/3.portfolio/Portfolio';
-import Contact from './pages/4.contact/Contact';
-import Footer from './components/footer/Footer'
-import SlidingLoginForm from './pages/0.login/toggleLogin'
-import SigIn from "./pages/0.login/SigIn"
+import Home from './pages/Home/Home';
+import Show from './pages/Show/Show';
+import Login from './pages/Login/Login';
+import About from './pages/About/About';
+import Footer from './components/footer/Footer';
+import Movies from "./pages/Movies/Movies";
+import Main from "./pages/Main/Main";
 
 function App() {
   const [isHovered, setIsHovered] = useState(true);
@@ -24,12 +24,14 @@ function App() {
   return (
       <div>
           <Router>
-            <Navbar />
+            {/* <Navbar /> */}
             <Routes>
-              <Route exact path='/' element={<Home />} />
-              <Route exact path='/show' element={<Services />} />
-              <Route exact path='/login' element={<Portfolio />} />
-              <Route exact path='/about' element={<Contact 
+              <Route exact path='/' element={<Main />} />
+              <Route exact path='/home' element={<Home />} />
+              <Route exact path='/show/:id' element={<Show />} />
+              <Route exact path='/login' element={<Login />} />
+              <Route exact path='/movies' element={<Movies />} />
+              <Route exact path='/about' element={<About 
                      userId="sandy"
                      emailId="sandy4645@gmail.com"
                      password="sandyFromDelhi"
