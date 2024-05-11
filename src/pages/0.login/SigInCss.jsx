@@ -22,7 +22,7 @@ export const SignUpContainer = styled.div`
  left: 0;
  width: 50%;
  opacity: 0;
- z-index: 1;
+ z-index: 2;
  ${props => props.signinIn !== true ? `
    transform: translateX(100%);
    opacity: 1;
@@ -41,7 +41,7 @@ left: 0;
 width: 50%;
 z-index: 2;
 ${props => (props.signinIn !== true ? `transform: translateX(100%); opacity: 0;
-z-index: 5;` : null)}
+z-index: 3;` : null)}
 `;
 
 export const Form = styled.form`

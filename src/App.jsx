@@ -9,6 +9,7 @@ import About from './pages/About/About';
 import Footer from './components/footer/Footer';
 import Movies from "./pages/Movies/Movies";
 import Main from "./pages/Main/Main";
+import Search from "./pages/Search/search";
 
 function App() {
   const [isHovered, setIsHovered] = useState(true);
@@ -29,6 +30,7 @@ function App() {
               <Route exact path='/' element={<Main />} />
               <Route exact path='/home' element={<Home />} />
               <Route exact path='/show/:id' element={<Show />} />
+              <Route exact path='/search/:id' element={<Search />} />
               <Route exact path='/login' element={<Login />} />
               <Route exact path='/movies' element={<Movies />} />
               <Route exact path='/about' element={<About 

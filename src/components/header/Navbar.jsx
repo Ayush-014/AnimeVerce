@@ -1,13 +1,14 @@
 import "../../../src/style.css"
 import { Fragment } from 'react'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+// import  logo "./newLogo.png"
+// import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'MAIN', href: '/', current: true },
+  // { name: 'MAIN', href: '/', current: true },
   { name: 'HOME', href: '/home', current: true },
-  { name: 'SHOW', href: '/show/:id', current: false },
-  { name: 'LOGIN', href: '/login', current: false },
   { name: 'ABOUT', href: '/about', current: false },
   { name: 'MOVIES', href: '/movies', current: false },
 ]
@@ -17,6 +18,14 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  
+  const [searchValue, setSearchValue] = useState('');
+    
+    const handleInputChange = (event) => {
+        setSearchValue(event.target.value);
+        console.log(event.target.value)
+    };
+
   return (
     <Disclosure as="nav" className="blurr absolute top-0 z-10 w-screen">
       {({ open }) => (
@@ -28,12 +37,13 @@ export default function Example() {
                 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                        <img src="/newLogo.png" className="w-auto h-10 blurr rounded-md" />
                     {navigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-800 hover:bg-gray-700 hover:text-white',
+                          item.current ? 'bg-purple-500 text-white' : 'text-gray-200 hover:bg-purple-400 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-bold'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -45,26 +55,60 @@ export default function Example() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    {/* <form action="/search" className="p-16">
+                            <input type="text" placeholder="Search" className="h-12 rounded-xl w-64 pl-6 font-bold" />
+                            <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg m-4 h-12 w-12">
+                                <i class="ri-search-2-line"></i>
+                            </button>
+                    </form> */}
+
+<form action={`/search/${searchValue}`} className="flex items-center max-w-lg mx-auto mr-8">
+            <label htmlFor="voice-search" className="sr-only">Search</label>
+            <div className="relative w-full">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3">
+                    <a href={`/search/${searchValue}`} key={searchValue}>
+                        <i className="ri-search-2-line text-gray-400 text-xl"></i>
+                    </a>
+                </div>
+                <input
+                    type="text"
+                    id="voice-search"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white font-bold"
+                    placeholder="Search..."
+                    required
+                    value={searchValue}
+                    onChange={handleInputChange}
+                />
+                <button type="button" className="absolute inset-y-0 end-0 flex items-center pe-3">
+                    <a href="/movies" key={searchValue}>
+                        <i class="ri-movie-fill text-gray-400 text-xl"></i>
+                    </a>
                 </button>
+            </div>
+        </form>
+    {/* <button type="submit" class="inline-flex items-center p-2 m-2 w-12 h-10 text-sm group font-medium text-white bg-purple-500 rounded-lg">
+          <i class="ri-search-2-line text-xl pl-1 group-hover:scale-105"></i>
+    </button> */}
+{/* </form> */}
+
+                    
+                    <a
+                        key="LOGIN"
+                        href="/login"
+                        className="bg-purple-500 mr-6 rounded-md px-3 py-3 text-sm font-bold text-gray-200 hover:bg-purple-600 hover:text-white"
+                        aria-current={false ? 'page' : undefined}
+                      >
+                          LOGIN
+                      </a>
+                    
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
+                <Menu as="div" className="relative ml-3"> 
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full bg-orange-500 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                      <i class="ri-user-3-fill h-8 w-8 rounded-full text-lg blurr pt-[1px]"></i>
                     </Menu.Button>
                   </div>
                   <Transition
@@ -81,7 +125,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
                           >
                             Your Profile
                           </a>
@@ -91,7 +135,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
                           >
                             Settings
                           </a>
@@ -101,9 +145,9 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
                           >
-                            Sign out
+                            Log Out
                           </a>
                         )}
                       </Menu.Item>
