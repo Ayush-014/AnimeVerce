@@ -19,12 +19,6 @@ const Show = () => {
         setShowRecommended((prev) => !prev);
     };
 
-    // const history = useHistory();
-
-    // const handleMovieCardClick = (movieId) => {
-    //     history.push(`/show/${movieId}`);
-    // };
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -51,91 +45,23 @@ const Show = () => {
         return <div>Error: {error}</div>;
     }
 
-    // const [popular, setPopular] = useState(null);
-    // const [epi, setEpi] = useState(null);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch("https://api-aniwatch.onrender.com/anime/episodes/attack-on-titan-112");
-    //             const json = await response.json();
-    //             setEpi(json);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch("https://api-aniwatch.onrender.com/anime/most-popular?page=2");
-    //             const json = await response.json();
-    //             setPopular(json);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch("https://api-aniwatch.onrender.com/anime/info?id=attack-on-titan-112");
-    //             const json = await response.json();
-    //             setData(json);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
-
     const seasonCard = data && data.seasons ? data.seasons.map((item) => (
         <Link to={`/show/${item.id}`} key={item.id}>
             <Card id={item.id} name={item.name} image={item.poster} />
         </Link>
     )) : null;
 
-
     const popularCard = data && data.mostPopularAnimes ? data.mostPopularAnimes.map((item) => (
+        <Link to={`/show/${item.id}`} key={item.id}>
         <SideCard
             key={item.id}
             name={item.name}
             poster={item.poster}
             rate={item.type}
             episode={item.episodes.sub}
-        // duration={item.duration}
         />
+        </Link>
     )) : null;
-
-    // const relatedCard = data && data.relatedAnimes ? data.relatedAnimes.map((item) => (
-    //     <MovieCard
-    //         key={item.id}
-    //         name={item.name}
-    //         poster={item.poster}
-    //         rating={item.type}
-    //         episodes={item.episodes.sub}
-    //     duration={item.duration}
-    //     />
-    // )) : null;
-
-    // const recommendedCard = data && data.recommendedAnimes ? data.recommendedAnimes.map((item) => (
-    //     <MovieCard
-    //         key={item.id}
-    //         name={item.name}
-    //         poster={item.poster}
-    //         rating={item.rating}
-    //         episodes={item.episodes.sub}
-    //         type={item.type}
-    //         duration={item.duration}
-    //     />
-    // )) : null;
 
     const cardList = showRecommended ? data?.recommendedAnimes : data?.relatedAnimes;
 
@@ -154,28 +80,13 @@ const Show = () => {
         </Link>
     )) : null;
 
-    // const popularCard = popular && popular.animes ? popular.animes.map((item) => (
-    //     <MovieCard
-    //         key={item.id}
-    //         name={item.name}
-    //         poster={item.poster}
-    //         rating={item.rating}
-    //         episodes={item.episodes.sub}
-    //         duration={item.duration}
-    //     />
-    // )) : null;
-
     return (<>
         <Navbar />
         <div className="bg-slate-900 h-screen w-screen overflow-hidden scrollbar-hide">
-            {/* <div className="w-52 h-12 border-2 border-white">
-                <img src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/debf027d032c6d40b91fab16b2ff9bd4.jpg" 
-                     className="h-72 w-52" />
-            </div> */}
             <div className="u-non-blurred w-screen h-full overflow-x-hidden relative scrollbar-hide">
-                <div className="pl-8 border mb-2 flex gap-16 static h-[61%] w-screen mt-[18%] flex-col flex-wrap overflow-x-scroll scrollbar-hide">
-                    <div className="absolute border border-black h-max bottom-0 ">
-                        <div className="overflow-hidden border-2 border-white">
+                <div className="pl-8 mb-2 flex gap-16 static h-[61%] w-screen mt-[18%] flex-col flex-wrap overflow-x-scroll scrollbar-hide">
+                    <div className="absolute w-full h-max bottom-0 ">
+                        <div className="overflow-hidden">
                             <img src={data?.anime?.info?.poster} 
                                  className="h-56 w-44 border-4 border-gray-700 absolute right-16 -top-48" />
                         </div>
@@ -191,40 +102,17 @@ const Show = () => {
                                 </div>
                             ) : null}
                             
-                            {/* <div>
-                                {[...Array(Math.round(data?.anime?.moreInfo?.malscore/2))].map(() => (
-                                    <i class="ri-star-fill mr-1 text-yellow-200"></i>
-                                ))}
-                            </div> */}
-
                             <div className="flex gap-1">
-                                <div className="bg-green-400 p-1 rounded-l-lg"><i class="ri-play-circle-fill"></i>{data?.anime?.info?.stats?.type}</div>
+                                <div className="bg-green-400 p-1 rounded-l-lg"><i class="ri-play-circle-fill"></i>{data?.anime?.info?.stats?.type.toUpperCase()}</div>
                                 <div className="bg-green-300 p-1 border border-green-400">{data?.anime?.info?.stats?.quality}</div>
                                 <div>
                                     {data?.anime?.moreInfo?.premiered ? (<div className="bg-green-400 p-1 rounded-r-lg"><i class="ri-calendar-fill"></i>{data?.anime?.moreInfo?.premiered}</div>
                                         ) : data?.anime?.moreInfo?.aired ? (<div className="bg-green-400 p-1 rounded-r-lg"><i class="ri-calendar-fill"></i>{data?.anime?.moreInfo?.aired}</div>)
                                          : null}
                                 </div>
-                                {/* <div className="bg-green-400 p-1 rounded-r-lg"><i class="ri-calendar-fill"></i>{data?.anime?.moreInfo?.aired}</div> */}
-                                {/* <div className="bg-green-400 p-1 rounded-r-lg"><i class="ri-calendar-fill"></i>{data?.anime?.moreInfo?.premiered}</div> */}
                             </div>
-                            {/* {data ? (
-                            <pre>{JSON.stringify(data, null, 2)}</pre>
-                        ) : (
-                            'Loading...'
-                        )} */}
-                            {/* {popular ? (
-                            <pre>{JSON.stringify(popular, null, 2)}</pre>
-                        ) : (
-                            'Loading...'
-                        )} */}
-                            {/* {epi ? (
-                            <pre>{JSON.stringify(epi, null, 2)}</pre>
-                        ) : (
-                            'Loading...'
-                        )} */}
                         </div>
-                        <div className="text-white m-2 w-[80%] text-sm italic backdrop-blur-lg"> {data?.anime?.info?.description} </div>
+                        <div className="text-white m-2 w-[95%] text-sm italic backdrop-blur-lg"> {data?.anime?.info?.description} </div>
                         <div className="m-2 flex gap-[3px]">
                             <div className="bg-green-400 p-[1px] text-xs rounded-l-lg">{data?.anime?.moreInfo?.genres[0]}</div>
                             {data?.anime?.moreInfo?.genres.map((genre, index) => {
@@ -239,24 +127,21 @@ const Show = () => {
                             <div className="bg-green-400 p-[1px] text-xs rounded-r-lg">{data?.anime?.moreInfo?.genres[1]}</div>
                         </div>
                         <div className="m-2 my-3 flex gap-2">
-                            <a href="#" className="flex p-2 px-3 text-white font-bold bg-green-300 border rounded-lg hover:scale-105 group">
+                            <a href="#" className="flex p-2 px-3 text-white font-bold bg-green-600 rounded-lg hover:scale-105 group">
                                 <div> Watch Now </div>
                                 <i class="ri-play-large-fill ml-2 group-hover:scale-125"></i>
                             </a>
-                            <a href="#" className="flex p-2 px-3 text-white font-bold border border-green-300 rounded-lg hover:scale-105 group">
+                            <a href={data?.anime?.info?.promotionalVideos.size > 0 ? data?.anime?.info?.promotionalVideos[0].source : '#'} className="flex p-2 px-3 text-white font-bold border border-green-600 rounded-lg hover:scale-105 group">
                                 <div> Trailer</div>
                                 <i class="ri-play-circle-line ml-2 group-hover:scale-110"></i>
                             </a>
-                            <div className="flex p-2 px-3 text-white font-bold bg-green-300 rounded-lg hover:scale-105 group">
+                            <div className="flex p-2 px-3 text-white font-bold bg-green-600 rounded-lg hover:scale-105 group">
                                 <div>Wishlist</div>
                                 <i class="ri-add-line ml-1 group-hover:scale-125"></i>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                
-
                 {data && data.seasons && data.seasons.length > 0 ? (<><p className="relative font-bold text-slate-300 text-lg mt-8 mx-2">SEASONS</p>
                 <div className="px-3 py-4 flex flex-col flex-wrap w-screen h-56 gap-3 border border-gray-500 rounded-lg overflow-hidden overflow-x-scroll scrollbar-hide">
                     {seasonCard}
@@ -270,15 +155,6 @@ const Show = () => {
                         <div className={`py-2 px-4 mb-0  font-bold text-sm ${showRecommended ? 'bg-slate-400' : 'blurr'}`} onClick={showRecommended ? null : toggleContent}>Recommended</div>
                         <div className={`py-2 px-4 mb-0 font-bold text-sm ${showRecommended ? 'blurr' : 'bg-slate-400'}`} onClick={showRecommended ? toggleContent : null}>Related</div>
                         </div>
-                        {/* {showRecommended ? (<div className="border border-black flex">
-                            <div className="border border-black py-2 px-4 mb-0 bg-slate-900 rounded-lg font-bold text-sm">Recommended</div>
-                            <div className="border border-black py-2 px-4 mb-0 bg-slate-300 rounded-lg font-bold text-sm">Related</div>
-                        </div>) : 
-                        (<div className="border border-black flex">
-                        <div className="border border-black py-2 px-4 mb-0 bg-slate-300 rounded-lg font-bold text-sm">Recommended</div>
-                        <div className="border border-black py-2 px-4 mb-0 bg-slate-900 rounded-lg font-bold text-sm">Related</div>
-                    </div>)
-                    } */}
                     </button>
                     <div className="relative flex w-full gap-3 flex-wrap py-4 overflow-x-scroll scrollbar-hide">
                         {cards}
@@ -286,7 +162,7 @@ const Show = () => {
                     </div>
 
                     <div className="w-[18%] px-2 overflow-hidden">
-                    {data && data.mostPopularAnimes && data.mostPopularAnimes.length > 0 ? (<><p className="font-bold text-slate-300 text-lg mt-2 mx-2">MOST POPULAR</p>
+                    {data && data.mostPopularAnimes && data.mostPopularAnimes.length > 0 ? (<><p className="font-bold py-1 px-4 mt-6 mr-4 rounded-lg blurr text-center">MOST POPULAR</p>
                         <div className="mt-6 relative flex w-full gap-2 flex-wrap overflow-scroll scrollbar-hide">
                             {popularCard}
                         </div></>
@@ -294,23 +170,8 @@ const Show = () => {
                     </div>
 
                 </div>
-
-                {/* <p className="relative font-bold text-slate-300 text-lg mt-8 mx-2">RECOMMENDED ANIMES</p>
-                    <div className="relative flex flex-col w-screen h-[72%] flex-wrap border border-purple-300 py-4 overflow-y-hidden overflow-scroll scrollbar-hide">
-                        {recommendedCard}
-                    </div> */}
-
-                {/* <p className="relative font-bold text-slate-300 text-lg mt-8 mx-2">MOST POPULAR</p>
-                    <div className="relative flex flex-col w-screen h-[72%] flex-wrap border border-purple-300 py-4 overflow-y-hidden overflow-scroll scrollbar-hide">
-                        {popularCard}
-                    </div> */}
                 <div>
                     <Review />
-                    {data ? (
-                            <pre>{JSON.stringify(data, null, 2)}</pre>
-                        ) : (
-                            'Loading...'
-                        )}
                 </div>
             </div>
         </div>
@@ -319,3 +180,9 @@ const Show = () => {
 }
 
 export default Show;
+
+{/* {data ? (
+                            <pre>{JSON.stringify(data, null, 2)}</pre>
+                        ) : (
+                            'Loading...'
+                        )} */}

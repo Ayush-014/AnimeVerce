@@ -13,9 +13,6 @@ export default function Review() {
     <div className="bg-gradient-to-b from-[#ffffff4d] to-gray-600 px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Review Section</h2>
-        <p className="mt-2 text-lg leading-8 text-gray-600">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        </p>
       </div>
       <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
@@ -40,7 +37,7 @@ export default function Review() {
             </label>
             <div className="mt-2.5 hover:scale-105 duration-500">
               <input
-                type="text"
+                type="email"
                 name="emailId"
                 id="emailId"
                 autoComplete="emailId"
@@ -71,7 +68,7 @@ export default function Review() {
                 
               </div>
               <input
-                type="tel"
+                type="number"
                 name="rating"
                 id="rating"
                 autoComplete="tel"

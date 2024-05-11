@@ -8,9 +8,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 
 const navigation = [
   // { name: 'MAIN', href: '/', current: true },
-  { name: 'HOME', href: '/home', current: true },
-  { name: 'ABOUT', href: '/about', current: false },
-  { name: 'MOVIES', href: '/movies', current: false },
+  // { name: 'HOME', href: '/home', current: true },
+  // { name: 'ABOUT', href: '/about', current: false },
+  // { name: 'MOVIES', href: '/movies', current: false },
 ]
 
 function classNames(...classes) {
@@ -37,7 +37,9 @@ export default function Example() {
                 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                      <a href="/" >
                         <img src="/newLogo.png" className="w-auto h-10 blurr rounded-md" />
+                      </a>
                     {navigation.map((item) => (
                       <a
                         key={item.name}
@@ -55,13 +57,6 @@ export default function Example() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    {/* <form action="/search" className="p-16">
-                            <input type="text" placeholder="Search" className="h-12 rounded-xl w-64 pl-6 font-bold" />
-                            <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg m-4 h-12 w-12">
-                                <i class="ri-search-2-line"></i>
-                            </button>
-                    </form> */}
-
 <form action={`/search/${searchValue}`} className="flex items-center max-w-lg mx-auto mr-8">
             <label htmlFor="voice-search" className="sr-only">Search</label>
             <div className="relative w-full">
@@ -85,27 +80,22 @@ export default function Example() {
                     </a>
                 </button>
             </div>
-        </form>
-    {/* <button type="submit" class="inline-flex items-center p-2 m-2 w-12 h-10 text-sm group font-medium text-white bg-purple-500 rounded-lg">
-          <i class="ri-search-2-line text-xl pl-1 group-hover:scale-105"></i>
-    </button> */}
-{/* </form> */}
-
-                    
+        </form>                    
                     <a
                         key="LOGIN"
                         href="/login"
-                        className="bg-purple-500 mr-6 rounded-md px-3 py-3 text-sm font-bold text-gray-200 hover:bg-purple-600 hover:text-white"
+                        className="mr-2 rounded-md relative group"
                         aria-current={false ? 'page' : undefined}
                       >
-                          LOGIN
+                          <img src="/public/log.png" className="w-10 h-10" />
+                          <div className="absolute -left-14 bottom-2 blurr px-1 rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 group-hover:duration-300 duration-300">Login</div>
                       </a>
                     
 
-                {/* Profile dropdown */}
+                {/* dropdown */}
                 <Menu as="div" className="relative ml-3"> 
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-orange-500 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full bg-green-500 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <i class="ri-user-3-fill h-8 w-8 rounded-full text-lg blurr pt-[1px]"></i>
@@ -120,12 +110,12 @@ export default function Example() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md blurr py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
+                            className={classNames(active ? 'backdrop-blur-3xl' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
                           >
                             Your Profile
                           </a>
@@ -135,9 +125,10 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
+                            className={classNames(active ? 'backdrop-blur-3xl' : '', 'flex items-center px-4 py-2 font-bold text-xs text-orange-500')}
                           >
-                            Settings
+                            LogIn
+                            <img src="/public/log.png" className="w-6 h-6 ml-1" />
                           </a>
                         )}
                       </Menu.Item>
@@ -145,7 +136,7 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
+                            className={classNames(active ? 'backdrop-blur-3xl' : '', 'block px-4 py-2 font-bold text-xs text-orange-500')}
                           >
                             Log Out
                           </a>

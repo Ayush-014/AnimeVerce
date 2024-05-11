@@ -1,7 +1,5 @@
 import '../../../src/style.css';
 import { Link, useParams } from 'react-router-dom';
-import Card from "/src/components/Card"
-import Review from "/src/components/Review"
 import MovieCard from "/src/components/Moviecard"
 import SideCard from "/src/components/SideCard";
 import Loader from '../../components/Loader.jsx';
@@ -21,14 +19,12 @@ const Search = () => {
         const fetchData = async () => {
             try {
                 const response = await fetch(`https://api-aniwatch.onrender.com/anime/search?q=${id}&page=${pages}`);
-                // console.log(`https://api-aniwatch.onrender.com/anime/search/suggest?q=${id}`)
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }
                 const json = await response.json();
+                setPages(json?.totalPages);
                 setData(json);
-                const no = data ? data.totalPages : 1;
-                setPages(no);
                 setIsLoading(false);
             } catch (error) {
                 console.error(error.message);
@@ -86,6 +82,7 @@ const Search = () => {
 
 
     const popularCard = data && data.mostPopularAnimes ? data.mostPopularAnimes.map((item) => (
+        <Link to={`/show/${item.id}`} key={item.id}>
         <SideCard
             key={item.id}
             name={item.name}
@@ -93,6 +90,7 @@ const Search = () => {
             rate={item.type}
             episode={item.episodes.sub}
         />
+        </Link>
     )) : null;
 
     return (<>
@@ -101,7 +99,7 @@ const Search = () => {
             <div className="u-non-blurred w-screen pt-20 h-full overflow-x-hidden relative scrollbar-hide">
 
                 <div className="text-3xl px-8 font-bold text-slate-400">
-                    SHOWING SEARCH RESULT FOR : {id.toUpperCase()}
+                    SHOWING SEARCH RESULT FOR : <span className="font-serif"> {id.toUpperCase()} </span>
                 </div>
                 <div className="mx-4 flex w-screen h-max  min-h-[30rem]">
                     <div className="w-full flex h-full overflow-hidden">
@@ -122,28 +120,22 @@ const Search = () => {
                     </div>
 
                 </div>
-                {/* <div className="w-screen flex justify-center gap-[1px] border-4 border-white cursor-default">
-                    <i class="ri-skip-left-fill text-2xl text-purple-400" onClick={() => handlePageClick(1)}></i>
-                    <i class="ri-arrow-left-s-fill text-2xl text-purple-400" onClick={() => handlePageClick(activePage - 1)}></i>
-                    <div className="border border-emerald-700 flex flex-wrap gap-1 max-w-[70%]">
+                <div className="w-screen flex justify-center gap-[1px] mt-12">
+                    <i class="ri-skip-left-fill text-2xl text-purple-400 cursor-pointer" onClick={() => handlePageClick(1)}></i>
+                    <i class="ri-arrow-left-s-fill text-2xl text-purple-400 cursor-pointer" onClick={() => handlePageClick(activePage - 1)}></i>
+                    <div className="flex flex-wrap gap-1 max-w-[70%]">
                     {[...Array(pages).keys()].map((page) => (
-                        <div className={`page w-8 h-8 pt-1 text-sm text-center font-bold rounded-lg ${activePage === page + 1 ? 'bg-gray-400' : 'bg-purple-400'}`}
+                        <div className={`page w-8 h-8 pt-1 text-sm text-center font-bold cursor-pointer rounded-lg ${activePage === page + 1 ? 'bg-gray-400' : 'bg-purple-400'}`}
                             key={page}
                             onClick={() => handlePageClick(page + 1)}>
                             {page + 1}
                         </div>
                     ))}
                     </div>
-                    <i class="ri-arrow-right-s-fill text-2xl text-purple-400" onClick={() => handlePageClick( activePage + 1)}></i>
-                    <i class="ri-skip-right-fill text-2xl text-purple-400" onClick={() => handlePageClick(pages)}></i>
-                </div> */}
-
-
-                {data ? (
-                    <pre>{JSON.stringify(data, null, 2)}</pre>
-                ) : (
-                    'Loading...'
-                )}
+                    <i class="ri-arrow-right-s-fill text-2xl text-purple-400 cursor-pointer" onClick={() => handlePageClick( activePage + 1)}></i>
+                    <i class="ri-skip-right-fill text-2xl text-purple-400 cursor-pointer" onClick={() => handlePageClick(pages)}></i>
+                </div>
+                <div className="w-screen h-20"></div>
             </div>
         </div>
     </>
